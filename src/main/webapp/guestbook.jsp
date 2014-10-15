@@ -10,84 +10,84 @@
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 <%@ page import="java.util.List" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<html>
-<head>
-    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/>
-</head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"  %>
 
-<body>
+<!DOCTYPE html>
+    <html>
+    	<head>
+    		<title>Debt Collector</title>
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    		
+    		<link href="<c:url value="/resources/css/bootplus.css" />" rel="stylesheet">
+    		<link href="<c:url value="/resources/css/bootplus.min.css" />" rel="stylesheet" media="screen">
+    		<link href="<c:url value="/resources/css/bootplus-responsive.min.css" />" rel="stylesheet" media="screen">
+    		<link href="<c:url value="/resources/css/addressbook.css" />" rel="stylesheet" media="screen">
+    		
+    		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    	</head>
+    	<body>
+    		<tags:navbar search_action="${pageContext.request.contextPath}"/>
+    		
+    		<div id="wrapper">
 
-<%
-    String guestbookName = request.getParameter("guestbookName");
-    if (guestbookName == null) {
-        guestbookName = "default";
-    }
-    pageContext.setAttribute("guestbookName", guestbookName);
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
-    if (user != null) {
-        pageContext.setAttribute("user", user);
-%>
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-    <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-<%
-} else {
-%>
-<p>Hello!
-    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-    to include your name with greetings you post.</p>
-<%
-    }
-%>
+		        <!-- Sidebar -->
+		        <div id="sidebar-wrapper">
+		            <ul class="sidebar-nav">
+		                <li class="sidebar-brand">
+		                    <a href="#">
+		                        Start Bootstrap
+		                    </a>
+		                </li>
+		                <li>
+		                    <a href="#">Dashboard</a>
+		                </li>
+		                <li>
+		                    <a href="#">Shortcuts</a>
+		                </li>
+		                <li>
+		                    <a href="#">Overview</a>
+		                </li>
+		                <li>
+		                    <a href="#">Events</a>
+		                </li>
+		                <li>
+		                    <a href="#">About</a>
+		                </li>
+		                <li>
+		                    <a href="#">Services</a>
+		                </li>
+		                <li>
+		                    <a href="#">Contact</a>
+		                </li>
+		            </ul>
+		        </div>
+		        <!-- /#sidebar-wrapper -->
+		
+		        <!-- Page Content -->
+		        <div id="page-content-wrapper">
+		            <div class="container-fluid">
+		                <div class="row">
+		                    <div class="col-lg-12">
+		                        <h1>Simple Sidebar</h1>
+		                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+		                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+		                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <!-- /#page-content-wrapper -->
+		
+		    </div>
+		    <!-- /#wrapper -->
+    		
+			<div class="container">
+			
+				Hello World...
+			
+			</div>
+    	</body>
+    </html>
 
-<%
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
-    // Run an ancestor query to ensure we see the most up-to-date
-    // view of the Greetings belonging to the selected Guestbook.
-    Query query = new Query("Greeting", guestbookKey).addSort("date", Query.SortDirection.DESCENDING);
-    List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
-    if (greetings.isEmpty()) {
-%>
-<p>Guestbook '${fn:escapeXml(guestbookName)}' has no messages.</p>
-<%
-} else {
-%>
-<p>Messages in Guestbook '${fn:escapeXml(guestbookName)}'.</p>
-<%
-    for (Entity greeting : greetings) {
-        pageContext.setAttribute("greeting_content",
-                greeting.getProperty("content"));
-        if (greeting.getProperty("user") == null) {
-%>
-<p>An anonymous person wrote:</p>
-<%
-} else {
-    pageContext.setAttribute("greeting_user",
-            greeting.getProperty("user"));
-%>
-<p><b>${fn:escapeXml(greeting_user.nickname)}</b> wrote:</p>
-<%
-    }
-%>
-<blockquote>${fn:escapeXml(greeting_content)}</blockquote>
-<%
-        }
-    }
-%>
-
-<form action="/sign" method="post">
-    <div><textarea name="content" rows="3" cols="60"></textarea></div>
-    <div><input type="submit" value="Post Greeting"/></div>
-    <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-</form>
-
-<form action="/guestbook.jsp" method="get">
-    <div><input type="text" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/></div>
-    <div><input type="submit" value="Switch Guestbook"/></div>
-</form>
-
-</body>
-</html>
