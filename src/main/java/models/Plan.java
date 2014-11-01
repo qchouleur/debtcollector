@@ -8,13 +8,13 @@ public class Plan {
 	
 	private Id id;
 	private String title;
-	private List<User> users;
+	private List<Person> users;
 	private String date;
 	private double amount;
 
 	public Plan(){}
 	
-	public Plan(String title, List<User> users, String date, double amount)
+	public Plan(String title, List<Person> users, String date, double amount)
 	{
 		this.id = Id.generate();
 		
@@ -32,11 +32,11 @@ public class Plan {
 		this.title = title;
 	}
 
-	public List<User> getUsers() {
+	public List<Person> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<User> users) {
+	public void setUsers(List<Person> users) {
 		this.users = users;
 	}
 

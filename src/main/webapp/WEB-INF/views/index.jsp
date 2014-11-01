@@ -19,10 +19,9 @@
     		<tags:navbar search_action="${pageContext.request.contextPath}"/>
 
 			<div class="container" style="margin-left: 110px;margin-top: 100px">
-			
-			<c:forEach items="${plans}" var="plan">
- 				<tags:plan_card plan="${plan}"/>
-    		</c:forEach>			
+				
+				${plans.title}
+				    			
 			</div>
     	</body>
     </html>

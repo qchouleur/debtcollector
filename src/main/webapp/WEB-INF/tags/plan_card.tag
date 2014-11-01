@@ -9,20 +9,20 @@
 	<div class="card-top blue">
 
     	<div>
-			<form name="remove" class="pull-right" method="post" action="${pageContext.request.contextPath}/contact/delete/${contact.id}">
-				<button class="btn btn-default navbar-btn" title="Supprimer le contact" type="submit">
+			<form name="remove" class="pull-right" method="post" action="${pageContext.request.contextPath}">
+				<button class="btn btn-default navbar-btn" title="Supprimer" type="submit">
 					<i class="fa fa-close"></i>
 				</button>
 			</form>
 
 			<button class="btn btn-default navbar-btn pull-right"
 				title="Edition"
-				onclick="window.location ='${pageContext.request.contextPath}/contact/edit/${contact.id}'">
+				onclick="window.location ='${pageContext.request.contextPath}'">
 				<i class="fa fa-cog"></i>
 			</button>
 			<button class="btn btn-default navbar-btn pull-right"
-				title="Ajout adresse"
-				onclick="window.location ='${pageContext.request.contextPath}/address/create/${contact.id}'">
+				title="Ajout participant"
+				onclick="window.location ='${pageContext.request.contextPath}'">
 				<i class="fa fa-plus"></i>
 			</button>
 		</div>
@@ -37,7 +37,11 @@
 			    	</a>
 			    </td>
 			    <td style="width: 70%">
-			    	
+			    	<a class="title" href="#">${${plan.title}} </a>
+			    	<fmt:formatDate value="${plan.date}" var="dateString" pattern="dd/MM/yyyy" />
+			    	${dateString}
+			    	<br />
+			    	<br />
 			    </td>
 		    </tr>	
 	    </table>
