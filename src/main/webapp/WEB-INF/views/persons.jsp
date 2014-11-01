@@ -20,8 +20,9 @@
 
 			<div class="container" style="margin-left: 110px;margin-top: 100px">
 				
-				${plans.title}
+				hello guys
 				    			
 			</div>
     	</body>
     </html>
+

@@ -9,17 +9,22 @@ import javax.persistence.Id;
 
 
 @Entity
-@Table(name="USER")
+@Table(name="PERSON")
 public class Person {
 	
 	@Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Id id;
+	private Integer id;
+	@Column(name="FIRSTNAME")
 	private String firstName;
+	@Column(name="LASTNAME")
 	private String lastName;
+	@Column(name="DATEOFBIRTH")
 	private String dateOfBirth;
+	@Column(name="EMAIL")
 	private String email;
+	@Column(name="PARTICIPATION")
 	private double participation;
 	
 	public Person(){}
@@ -74,11 +79,11 @@ public class Person {
 		this.participation = participation;
 	}
 
-	public Id getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Id id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

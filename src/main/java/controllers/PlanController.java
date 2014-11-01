@@ -27,9 +27,9 @@ public class PlanController {
 			"redirect:/");
 	
 	@Autowired
-	private MessageSource messageSource;
-	private StaticDataStorage data = new StaticDataStorage();
-	private Plan plan = data.getPlan();
+	public MessageSource messageSource;
+	public StaticDataStorage data = new StaticDataStorage();
+	public Plan plan = data.getPlan();
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
