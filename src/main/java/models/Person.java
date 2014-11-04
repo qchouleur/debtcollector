@@ -16,27 +16,21 @@ public class Person {
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="FIRSTNAME")
+	@Column(name="firstName")
 	private String firstName;
-	@Column(name="LASTNAME")
+	@Column(name="lastName")
 	private String lastName;
-	@Column(name="DATEOFBIRTH")
-	private String dateOfBirth;
-	@Column(name="EMAIL")
+	@Column(name="email")
 	private String email;
-	@Column(name="PARTICIPATION")
-	private double participation;
 	
 	public Person(){}
 	
-	public Person(String firstName, String lastName, String dateOfBirth, String email, double participation)
+	public Person(String firstName, String lastName, String email)
 	{
 		//this.id = Id.generate();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
 		this.email = email;
-		this.participation = participation;
 	}
 
 	public String getFirstName() {
@@ -55,28 +49,12 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public double getParticipation() {
-		return participation;
-	}
-
-	public void setParticipation(double participation) {
-		this.participation = participation;
 	}
 
 	public Integer getId() {
@@ -90,8 +68,8 @@ public class Person {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", dateOfBirth=" + dateOfBirth + ", email="
-				+ email + ", participation=" + participation + "]";
+				+ lastName + ", email="
+				+ email + "]";
 	}
 	
 }

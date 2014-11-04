@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +16,16 @@ public class StaticDataStorage {
 		
 		users = new ArrayList<Person>();
 	
-		Person user = new Person("Paul", "Vaillant", "12/09/89", "pvaillant@hotmail.com", 30);
+		Person user = new Person("Paul", "Vaillant", "pvaillant@hotmail.com");
 		users.add(user);
-		user = new Person("Nero", "Rajan", "15/06/89", "nrajaratnam@hotmail.com", 50);
+		user = new Person("Nero", "Rajan", "nrajan@hotmail.com");
 		users.add(user);
-		user = new Person("Quentin", "Chou", "12/08/90", "qchou@hotmail.com", 10);
+		user = new Person("Quentin", "Chou", "qchou@hotmail.com");
 		users.add(user);
-		user = new Person("Marie", "Flou", "14/02/91", "mflou@hotmail.com", 0);
+		user = new Person("Marie", "Flou", "mflou@hotmail.com");
 		users.add(user);
 		
-		plan = new Plan("KDO Juju", this.users, "01/11/14", 80);
+		plan = new Plan("KDO Lise", this.users, new Date(), 80);
 	}
 
 	public List<Person> getUsers() {

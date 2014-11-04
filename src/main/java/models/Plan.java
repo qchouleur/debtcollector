@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,19 +10,19 @@ public class Plan {
 	private Id id;
 	private String title;
 	private List<Person> users;
-	private String date;
+	private Date date;
 	private double amount;
 
 	public Plan(){}
 	
-	public Plan(String title, List<Person> users, String date, double amount)
+	public Plan(String title, List<Person> users, Date date, double amount)
 	{
 		this.id = Id.generate();
 		
 		this.title = title;
 		this.users = users;
 		this.date = date;
-		this.amount = amount;;
+		this.amount = amount;
 	}
 
 	public String getTitle() {
@@ -40,11 +41,11 @@ public class Plan {
 		this.users = users;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

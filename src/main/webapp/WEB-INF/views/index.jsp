@@ -18,9 +18,9 @@
     	<body>
     		<tags:navbar search_action="${pageContext.request.contextPath}"/>
 
-			<div class="container" style="margin-left: 110px;margin-top: 100px">
+			<div class="container" style="margin-left: 110px;margin-top: 50px">
 				
-				${plans.title}
+				<tags:plan_card plan="${plans}"/>
 				    			
 			</div>
     	</body>

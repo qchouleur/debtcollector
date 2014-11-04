@@ -10,7 +10,7 @@
 				<i class="fa fa-users fa-2x"></i>
 			</button>
 			<button class="btn btn-default navbar-btn pull-right" style="margin-top:5px;min-height:35px; margin-right: 10px" 
-					title="Nouveau projet" onclick="window.location ='${pageContext.request.contextPath}/plan/create'">
+					title="Nouveau participant" onclick="window.location ='${pageContext.request.contextPath}/persons/create'">
 				<i class="fa fa-plus fa-2x"></i>
 			</button>
 			<button class="btn btn-default navbar-btn pull-right" style="margin-top:5px;min-height:35px; margin-right: 10px" 

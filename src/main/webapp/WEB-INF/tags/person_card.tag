@@ -1,11 +1,11 @@
 <%@ tag body-content="scriptless" %>
 
-<%@ attribute name="plan" required="true" type="models.Plan" %>
+<%@ attribute name="person" required="true" type="models.Person" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<div class="card people" style="margin:auto;margin-top:15px">
+<div class="card person" style="margin:auto;margin-top:15px">
 	<div class="card-top blue">
 
     	<div>
@@ -20,11 +20,6 @@
 				onclick="window.location ='${pageContext.request.contextPath}'">
 				<i class="fa fa-cog"></i>
 			</button>
-			<button class="btn btn-default navbar-btn pull-right"
-				title="Ajout participant"
-				onclick="window.location ='${pageContext.request.contextPath}'">
-				<i class="fa fa-plus"></i>
-			</button>
 		</div>
     </div>
     
@@ -32,18 +27,9 @@
 	    <table style="width: 100%">
 		    <tr>
 			    <td style="width: 100%">
-			    	<a class="title" href="#" style="text-align: center; ">${plan.title}</a>
-			    	<fmt:formatDate value="${plan.date}" var="dateString" pattern="dd/MM/yyyy" />
-			    	<div style="text-align: center;">${dateString}</div>
+			    	<a class="title" href="#" style="text-align: center; ">${person.lastName} ${person.firstName}</a>
 			    	<br />
-			    	<c:forEach var="entry" items="${plans.users}" >
-			    	<table style="width: 100%; margin-left: 10px">
-			    		<tr>
-			    			<td style="width: 70%">${entry.firstName} ${entry.lastName}</td>
-			    			<td style="width: 30%"> <i class="fa fa-eur"></i></td>
-			    		</tr>
-					</table>
-					</c:forEach>
+			    	<div class="desc"><i class="fa fa-at" style="margin-right:10px"></i><a href="mailto:${person.email}">${person.email}</a></div>
 			    </td>
 		    </tr>	
 	    </table>
