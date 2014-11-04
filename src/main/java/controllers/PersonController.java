@@ -1,5 +1,7 @@
 package controllers;
 
+import javax.validation.Valid;
+
 import models.Person;
 import models.Plan;
 
@@ -38,12 +40,12 @@ public class PersonController {
 		binder.setDisallowedFields("id");
 	}
 	
-	@RequestMapping(value = "/listPersons", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String index(ModelMap model) {
 		
-		model.addAttribute("users", plan.getUsers());
+		model.addAttribute("users", data.getUsers());
 		
-		return "persons/listPersons";
+		return "persons/list";
 
 	}
 	
@@ -55,14 +57,16 @@ public class PersonController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView create(
-			@ModelAttribute("person")
+			@ModelAttribute("person") @Valid Person person,
 			BindingResult result, ModelMap model,
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return new ModelAndView("persons/listPersons");
+			return new ModelAndView("persons/list");
 		}
 		
-		return new ModelAndView("redirect:/persons/listPersons/");
+		data.addPerson(person);
+		
+		return new ModelAndView("redirect:/persons/list/");
 	}
 }

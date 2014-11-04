@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -7,20 +8,20 @@ import java.util.UUID;
 
 public class Plan {
 	
-	private Id id;
+	private Identifier id;
 	private String title;
-	private List<Person> users;
 	private Date date;
 	private double amount;
+	private List<Participation> participations;
 
 	public Plan(){}
 	
-	public Plan(String title, List<Person> users, Date date, double amount)
+	public Plan(String title, List<Participation> participations, Date date, double amount)
 	{
-		this.id = Id.generate();
+		this.id = Identifier.generate();
 		
 		this.title = title;
-		this.users = users;
+		this.participations = participations;
 		this.date = date;
 		this.amount = amount;
 	}
@@ -33,12 +34,12 @@ public class Plan {
 		this.title = title;
 	}
 
-	public List<Person> getUsers() {
-		return users;
+	public List<Participation> getParticipations() {
+		return participations;
 	}
 
-	public void setUsers(List<Person> users) {
-		this.users = users;
+	public void setParticipations(List<Participation> participations) {
+		this.participations = participations;
 	}
 
 	public Date getDate() {
@@ -49,11 +50,11 @@ public class Plan {
 		this.date = date;
 	}
 
-	public Id getId() {
+	public Identifier getId() {
 		return id;
 	}
 
-	public void setId(Id id) {
+	public void setId(Identifier id) {
 		this.id = id;
 	}
 
@@ -65,4 +66,15 @@ public class Plan {
 		this.amount = amount;
 	}
 	
+	public List<Person> getParticipationPersons()
+	{
+		List<Person> persons = new ArrayList<Person>();
+		
+		for(Participation participation : this.participations)
+		{
+			persons.add(participation.getPerson());
+		}
+		
+		return persons;
+	}
 }

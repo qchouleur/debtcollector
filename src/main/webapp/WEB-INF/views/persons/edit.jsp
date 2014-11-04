@@ -21,7 +21,7 @@
     	<body>
     		<tags:navbar_person search_action="${pageContext.request.contextPath}"/>
 
-			<div class="container" style="margin-left: 110px;margin-top: 100px">
+			<div class="container" style="margin-left: 50px;margin-top: 100px">
 				
 				<c:forEach items="${users}" var="user">
 	 				<tags:person_card person= "${user}"/>
@@ -30,4 +30,3 @@
 			</div>
     	</body>
     </html>
-

@@ -6,7 +6,7 @@
 		<div class="container">
 			<a class="brand" href="${pageContext.request.contextPath}/"><i class="fa fa-calculator"></i>   Debt Collector</a>
 			<button class="btn btn-default navbar-btn pull-right" style="margin-top:5px;min-height:35px; margin-right: 10px" 
-					title="Liste des utilisateurs" onclick="window.location ='${pageContext.request.contextPath}/persons/listPersons'">
+					title="Liste des utilisateurs" onclick="window.location ='${pageContext.request.contextPath}/persons/list'">
 				<i class="fa fa-users fa-2x"></i>
 			</button>
 			<button class="btn btn-default navbar-btn pull-right" style="margin-top:5px;min-height:35px; margin-right: 10px" 

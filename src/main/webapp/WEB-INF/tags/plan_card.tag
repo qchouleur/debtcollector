@@ -36,7 +36,7 @@
 			    	<fmt:formatDate value="${plan.date}" var="dateString" pattern="dd/MM/yyyy" />
 			    	<div style="text-align: center;">${dateString}</div>
 			    	<br />
-			    	<c:forEach var="entry" items="${plans.users}" >
+			    	<c:forEach var="entry" items="${plans.getParticipationPersons()}" >
 			    	<table style="width: 100%; margin-left: 10px">
 			    		<tr>
 			    			<td style="width: 70%">${entry.firstName} ${entry.lastName}</td>

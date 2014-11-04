@@ -1,6 +1,5 @@
 package controllers;
 
-
 import models.Plan;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.StaticDataStorage;
-
 
 @Controller
 @RequestMapping(value = {"/", "/index"})
