@@ -22,7 +22,7 @@
 			</button>
 			<button class="btn btn-default navbar-btn pull-right"
 				title="Ajout participant"
-				onclick="window.location ='${pageContext.request.contextPath}'">
+				onclick="window.location ='${pageContext.request.contextPath}/persons/create/${plan.id}'">
 				<i class="fa fa-plus"></i>
 			</button>
 		</div>
@@ -36,14 +36,17 @@
 			    	<fmt:formatDate value="${plan.date}" var="dateString" pattern="dd/MM/yyyy" />
 			    	<div style="text-align: center;">${dateString}</div>
 			    	<br />
-			    	<c:forEach var="entry" items="${plans.getParticipationPersons()}" >
-			    	<table style="width: 100%; margin-left: 10px">
-			    		<tr>
-			    			<td style="width: 70%">${entry.firstName} ${entry.lastName}</td>
-			    			<td style="width: 30%"> <i class="fa fa-eur"></i></td>
-			    		</tr>
-					</table>
-					</c:forEach>
+			    	<c:if test="${not empty plan.getParticipationPersons()}">
+				    	<c:forEach var="entry" items="${plan.getParticipationPersons()}" >
+					    	<table style="width: 100%; margin-left: 10px">
+					    		<tr>
+					    			<td style="width: 70%">${entry.firstName} ${entry.lastName}</td>
+					    			<td style="width: 30%"> <i class="fa fa-eur"></i></td>
+					    		</tr>
+							</table>
+						</c:forEach>
+					</c:if>
+					<div style="text-align: center; vertical-align: bottom;">Total: ${plan.amount}</div>
 			    </td>
 		    </tr>	
 	    </table>

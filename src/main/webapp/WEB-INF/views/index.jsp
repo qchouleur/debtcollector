@@ -20,8 +20,10 @@
 
 			<div class="container" style="margin-left: 110px;margin-top: 50px">
 				
-				<tags:plan_card plan="${plans}"/>
-				    			
+				<c:forEach items="${plans}" var="plan">
+ 					<tags:plan_card plan="${plan}"/>
+    			</c:forEach>
+			
 			</div>
     	</body>
     </html>

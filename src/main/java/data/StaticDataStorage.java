@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Identifier;
 import models.Participation;
 import models.Plan;
 import models.Person;
@@ -14,6 +15,7 @@ public class StaticDataStorage {
 	private Plan plan;
 	private Participation participation;
 	private List<Person> users = new ArrayList<Person>();
+	private List<Plan> plans = new ArrayList<Plan>();
 	
 	public StaticDataStorage(){
 		
@@ -35,7 +37,18 @@ public class StaticDataStorage {
 		participation = new Participation(user, 10);
 		participations.add(participation);
 		users.add(user);
-		plan = new Plan("KDO Lise", this.participations, new Date(), 80);
+		plan = new Plan("KDO Lise", new Date(), 80);
+		plan.setParticipations(participations);
+		plans.add(plan);
+	}
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
 	}
 
 
@@ -78,5 +91,21 @@ public class StaticDataStorage {
 		
 		if(person != null)
 			this.users.add(person);
+	}
+	
+	public void addPlan(Plan plan)
+	{
+		this.plans.add(plan);
+	}
+	
+	public Plan getPlanById(Identifier id)
+	{
+		for(Plan plan : this.plans)
+		{
+			if(plan.getId() == id)
+				return plan;
+		}
+		
+		return null;
 	}
 }

@@ -26,13 +26,13 @@
 		<tags:navbar search_action="${pageContext.request.contextPath}"/>
 
 	<div class="container" style="margin-top:50px">
-		<form:form action="${pageContext.request.contextPath}/persons/create" class="form-horizontal" commandName="person">
+		<form:form action="${pageContext.request.contextPath}/plan/create" class="form-horizontal" commandName="plan">
 	    	<fieldset>
 	    		
-	    		<tags:form_field label="Prénom" name="firstName" placeholder="Prénom" path="firstName"/>
-	    		<tags:form_field label="Nom" name="lastName" placeholder="Nom" path="lastName"/>
-		    	<tags:form_field label="Email" name="email" placeholder="email@example.com" path="email"/>     
-		     
+	    		<tags:form_field label="Title" name="title" placeholder="Title" path="title"/>
+	    		<tags:form_field label="Date" name="date" placeholder="JJ/MM/AAA" path="date"/>    
+	    		<tags:form_field label="Montant" name="amount" placeholder="Amount" path="amount"/>
+		     	
 			    <div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-success">Enregistrer</button>

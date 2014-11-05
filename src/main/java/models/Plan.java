@@ -5,23 +5,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class Plan {
 	
 	private Identifier id;
+	@NotEmpty
 	private String title;
 	private Date date;
 	private double amount;
-	private List<Participation> participations;
+	private List<Participation> participations = new ArrayList<Participation>();
 
 	public Plan(){}
 	
-	public Plan(String title, List<Participation> participations, Date date, double amount)
+	public Plan(String title, Date date, double amount)
 	{
 		this.id = Identifier.generate();
 		
 		this.title = title;
-		this.participations = participations;
 		this.date = date;
 		this.amount = amount;
 	}
