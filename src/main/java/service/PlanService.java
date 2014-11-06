@@ -54,4 +54,15 @@ public class PlanService {
 	public void remove(Person person) {
 		repository.remove(person);
 	}
+	public Person getUserById(int idPerson) {
+		return repository.getUser(idPerson);
+	}
+	public void removeById(int idPerson) {
+		repository.removeById(idPerson);
+	}
+
+	public boolean exists(int idPers) {
+		return repository.getPerson(idPers) != null;
+	}
+	
 }

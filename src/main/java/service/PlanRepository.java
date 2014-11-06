@@ -17,5 +17,8 @@ public interface PlanRepository {
 	List<Person> allPersons();
 	void save(Person person);
 	void remove(Person person);
+	Person getUser(int id);
+	void removeById(int id);
+	Person getPerson(int idPers);
 
 }

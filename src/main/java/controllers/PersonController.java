@@ -33,8 +33,6 @@ public class PersonController {
 	
 	@Autowired
 	public MessageSource messageSource;
-	public StaticDataStorage data = new StaticDataStorage();
-	public List<Plan> plans = data.getPlans();
 	private PlanService service = StaticDataStorage.service();
 
 	@InitBinder
@@ -66,10 +64,13 @@ public class PersonController {
 			return new ModelAndView("persons/list");
 		}
 		
-		if(data.alreadyExist(person.getEmail()))
+		for(Person per : service.allPersons())
 		{
-			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.person.email", null, null));
-			return new ModelAndView("persons/list");
+			if(per.getEmail().equals(person.getEmail()))
+			{
+				redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.person.email", null, null));
+				return new ModelAndView("persons/list");
+			}
 		}
 		
 		person.setId(Person.randInt(10, 9000000));
@@ -84,7 +85,7 @@ public class PersonController {
 			@PathVariable(value = "idPerson") String id) {
 		
 		int idPerson = Integer.parseInt(id);
-		Person person = data.getUserById(idPerson);
+		Person person = service.getUserById(idPerson);
 
 		ModelAndView model = new ModelAndView("persons/edit", "person", person);
 		model.addObject("idPerson", idPerson);
@@ -104,10 +105,10 @@ public class PersonController {
 		}
 		
 		int idPerson = Integer.parseInt(id);
-		data.deletePersonById(idPerson);
+		service.removeById(idPerson);
 		
 		person.setId(Person.randInt(10, 9000000));
-		data.addPerson(person);
+		service.update(person);
 		
 		return new ModelAndView("redirect:/persons/list/");
 	}
@@ -118,7 +119,7 @@ public class PersonController {
 		
 		int idPers = Integer.parseInt(id);
 		
-		if(!data.exists(idPers)) {
+		if(!service.exists(idPers)) {
 			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.person.id", null, null));
 			return HOME_REDIRECTION;
 		}

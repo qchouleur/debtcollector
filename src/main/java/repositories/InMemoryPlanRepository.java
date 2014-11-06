@@ -129,5 +129,45 @@ public class InMemoryPlanRepository implements PlanRepository{
 		
 	}
 
+	@Override
+	public Person getUser(int id) {
+		for(Person pers : datapersons)
+		{
+			if(pers.getId().equals(id))
+			{
+				return pers;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void removeById(int id) {
+		Person toDelete = null;
+		for(Person pers : datapersons)
+		{
+			if(pers.getId().equals(id))
+			{
+				toDelete = pers;
+			}
+		}
+		
+		if(toDelete != null)
+			datapersons.remove(toDelete);
+	}
+
+	@Override
+	public Person getPerson(int idPers) {
+		for(Person person : this.datapersons)
+		{
+			if(person.getId().equals(idPers))
+			{
+				return person;
+			}
+		}
+		
+		return null;
+	}
+
 	
 }
