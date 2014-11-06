@@ -9,7 +9,7 @@
 	<div class="card-top blue">
 
     	<div>
-			<form name="remove" class="pull-right" method="post" action="${pageContext.request.contextPath}">
+			<form name="remove" class="pull-right" method="post" action="${pageContext.request.contextPath}/persons/delete/${person.id}">
 				<button class="btn btn-default navbar-btn" title="Supprimer" type="submit">
 					<i class="fa fa-close"></i>
 				</button>
@@ -17,7 +17,7 @@
 
 			<button class="btn btn-default navbar-btn pull-right"
 				title="Edition"
-				onclick="window.location ='${pageContext.request.contextPath}'">
+				onclick="window.location ='${pageContext.request.contextPath}/persons/edit/${person.id}'">
 				<i class="fa fa-cog"></i>
 			</button>
 		</div>

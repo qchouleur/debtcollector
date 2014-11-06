@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Random;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -19,7 +20,6 @@ public class Person {
 	@Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@NotEmpty
 	private Integer id;
 	@Column(name="firstName")
 	@NotEmpty
@@ -35,6 +35,7 @@ public class Person {
 	
 	public Person(String firstName, String lastName, String email)
 	{
+		this.id = randInt(10, 9000000);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -79,4 +80,12 @@ public class Person {
 				+ email + "]";
 	}
 	
+	
+	public static int randInt(int min, int max) {
+
+	    Random rand = new Random();
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+	    return randomNum;
+	}
 }

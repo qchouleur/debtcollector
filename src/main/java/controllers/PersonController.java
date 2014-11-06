@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,7 +65,58 @@ public class PersonController {
 			return new ModelAndView("persons/list");
 		}
 		
+		person.setId(Person.randInt(10, 9000000));
 		data.addPerson(person);
+		
+		return new ModelAndView("redirect:/persons/list/");
+	}
+	
+	@RequestMapping(value = "/edit/{idPerson}", method = RequestMethod.GET)
+	public ModelAndView edit(
+			@PathVariable(value = "idPerson") String id) {
+		
+		int idPerson = Integer.parseInt(id);
+		Person person = data.getUserById(idPerson);
+
+		ModelAndView model = new ModelAndView("persons/edit", "person", person);
+		model.addObject("idPerson", idPerson);
+		
+		return person != null ?  model : new ModelAndView("redirect:/person/"+idPerson);
+	}
+	
+	@RequestMapping(value = "/edit/{idPerson}", method = RequestMethod.POST)
+	public ModelAndView edit(
+			@PathVariable(value = "idPerson") String id,
+			@ModelAttribute("person") @Valid Person person,
+			BindingResult result, ModelMap model,
+			RedirectAttributes redirectAttributes) {
+
+		if (result.hasErrors()) {
+			return new ModelAndView("persons/list");
+		}
+		
+		int idPerson = Integer.parseInt(id);
+		data.deletePersonById(idPerson);
+		
+		person.setId(Person.randInt(10, 9000000));
+		data.addPerson(person);
+		
+		return new ModelAndView("redirect:/persons/list/");
+	}
+	
+	@RequestMapping(value = "/delete/{idPerson}", method = RequestMethod.POST)
+	public ModelAndView delete(@PathVariable(value = "idPerson") String id,
+			RedirectAttributes redirectAttributes) {
+		
+		int idPers = Integer.parseInt(id);
+		
+		if(!data.exists(idPers)) {
+			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.contact.id", null, null));
+			return HOME_REDIRECTION;
+		}
+		
+		data.deletePersonById(idPers);
+		//data.deleteParticipationOfPerson(data.getUserById(idPers));
 		
 		return new ModelAndView("redirect:/persons/list/");
 	}

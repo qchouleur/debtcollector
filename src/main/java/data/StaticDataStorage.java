@@ -108,4 +108,49 @@ public class StaticDataStorage {
 		
 		return null;
 	}
+	
+	public Person getUserById(int id)
+	{
+		for(Person person  : this.users)
+		{
+			if(person.getId().equals(id))
+				return person;
+		}
+		
+		return null;
+	}
+	
+	public void deletePersonById(int id)
+	{
+		Person toDelete = null;
+		for(Person person  : this.users)
+		{
+			if(person.getId().equals(id))
+				toDelete = person;
+		}
+		
+		if(toDelete != null)
+		{
+			this.users.remove(toDelete);
+		}
+	}
+
+	public boolean exists(int idPers) {
+		
+		return (this.getUserById(idPers) != null) ? true : false;
+	}
+	
+	public void deleteParticipationOfPerson(Person person)
+	{
+		Participation participationToDelete = null;
+		
+		for(Participation parti : this.participations)
+		{
+			if(parti.getPerson() == person)
+				participationToDelete = parti;
+		}
+		
+		if(participationToDelete != null)
+			this.participations.remove(participationToDelete);
+	}
 }
