@@ -27,7 +27,7 @@
 	    <table style="width: 100%">
 		    <tr>
 			    <td style="width: 100%">
-			    	<a class="title" href="#" style="text-align: center; ">${person.lastName} ${person.firstName}</a>
+			    	<a class="title" href="#" style="text-align: center; ">${person.firstName} ${person.lastName}</a>
 			    	<br />
 			    	<div class="desc"><i class="fa fa-at" style="margin-right:10px"></i><a href="mailto:${person.email}">${person.email}</a></div>
 			    </td>

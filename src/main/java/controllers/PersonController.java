@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import service.PlanService;
 import data.StaticDataStorage;
 
 @Controller
@@ -34,6 +35,7 @@ public class PersonController {
 	public MessageSource messageSource;
 	public StaticDataStorage data = new StaticDataStorage();
 	public List<Plan> plans = data.getPlans();
+	private PlanService service = StaticDataStorage.service();
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -43,8 +45,7 @@ public class PersonController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String index(ModelMap model) {
 		
-		model.addAttribute("users", data.getUsers());
-		
+		model.addAttribute("users", service.allPersons());
 		return "persons/list";
 
 	}
@@ -65,8 +66,15 @@ public class PersonController {
 			return new ModelAndView("persons/list");
 		}
 		
+		if(data.alreadyExist(person.getEmail()))
+		{
+			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.person.email", null, null));
+			return new ModelAndView("persons/list");
+		}
+		
 		person.setId(Person.randInt(10, 9000000));
-		data.addPerson(person);
+		//data.addPerson(person);
+		service.update(person);
 		
 		return new ModelAndView("redirect:/persons/list/");
 	}
@@ -111,12 +119,15 @@ public class PersonController {
 		int idPers = Integer.parseInt(id);
 		
 		if(!data.exists(idPers)) {
-			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.contact.id", null, null));
+			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.person.id", null, null));
 			return HOME_REDIRECTION;
 		}
 		
-		data.deletePersonById(idPers);
-		data.deleteParticipationOfPerson(data.getUserById(idPers));
+		for(Person person : service.allPersons())
+		{
+			if(person.getId().equals(idPers))
+				service.remove(person);
+		}
 		
 		return new ModelAndView("redirect:/persons/list/");
 	}

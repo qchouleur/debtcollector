@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import repositories.InMemoryPlanRepository;
+import service.PersonService;
+import service.PlanRepository;
+import service.PlanService;
 import models.Identifier;
 import models.Participation;
 import models.Plan;
@@ -11,35 +15,51 @@ import models.Person;
 
 public class StaticDataStorage {
 	
+	private static StaticDataStorage instance;
+	private final PlanService service;
+	
 	private List<Participation> participations;
 	private Plan plan;
 	private Participation participation;
-	private List<Person> users = new ArrayList<Person>();
+	private List<Person> persons;
 	private List<Plan> plans = new ArrayList<Plan>();
 	
 	public StaticDataStorage(){
 		
+		persons = new ArrayList<Person>();
 		participations = new ArrayList<Participation>();
 	
 		Person user = new Person("Paul", "Vaillant", "pvaillant@hotmail.com");
 		participation = new Participation(user, 10);
 		participations.add(participation);
-		users.add(user);
+		persons.add(user);
 		user = new Person("Nero", "Rajan", "nrajan@hotmail.com");
 		participation = new Participation(user, 50);
 		participations.add(participation);
-		users.add(user);
+		persons.add(user);
 		user = new Person("Quentin", "Chou", "qchou@hotmail.com");
 		participation = new Participation(user, 20);
 		participations.add(participation);
-		users.add(user);
+		persons.add(user);
 		user = new Person("Marie", "Flou", "mflou@hotmail.com");
 		participation = new Participation(user, 10);
 		participations.add(participation);
-		users.add(user);
+		persons.add(user);
 		plan = new Plan("KDO Lise", new Date(), 80);
 		plan.setParticipations(participations);
 		plans.add(plan);
+	
+
+		PlanRepository repository = new InMemoryPlanRepository(plans, persons);
+		this.service = new PlanService(repository);
+	}
+	
+	public static PlanService service() {
+		if(instance == null) {
+			instance = new StaticDataStorage();
+		}
+		
+		return instance.service;
 	}
 
 	public List<Plan> getPlans() {
@@ -77,20 +97,20 @@ public class StaticDataStorage {
 	}
 
 	
-	public List<Person> getUsers() {
-		return users;
+	public List<Person> getPersons() {
+		return persons;
 	}
 
 
-	public void setUsers(List<Person> users) {
-		this.users = users;
+	public void setUsers(List<Person> persons) {
+		this.persons = persons;
 	}
 
 
 	public void addPerson(Person person) {
 		
 		if(person != null)
-			this.users.add(person);
+			this.persons.add(person);
 	}
 	
 	public void addPlan(Plan plan)
@@ -111,7 +131,7 @@ public class StaticDataStorage {
 	
 	public Person getUserById(int id)
 	{
-		for(Person person  : this.users)
+		for(Person person  : this.persons)
 		{
 			if(person.getId().equals(id))
 				return person;
@@ -123,7 +143,7 @@ public class StaticDataStorage {
 	public void deletePersonById(int id)
 	{
 		Person toDelete = null;
-		for(Person person  : this.users)
+		for(Person person  : this.persons)
 		{
 			if(person.getId().equals(id))
 				toDelete = person;
@@ -131,7 +151,7 @@ public class StaticDataStorage {
 		
 		if(toDelete != null)
 		{
-			this.users.remove(toDelete);
+			this.persons.remove(toDelete);
 		}
 	}
 
@@ -173,5 +193,18 @@ public class StaticDataStorage {
 		
 		if(planToDelete != null)
 			this.plans.remove(planToDelete);
+	}
+
+	public boolean alreadyExist(String email) {
+
+		for(Person person : this.persons)
+		{
+			if(person.getEmail().equals(email))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

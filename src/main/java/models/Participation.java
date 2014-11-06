@@ -1,8 +1,10 @@
 package models;
 
+import javax.validation.Valid;
+
 public class Participation {
 	
-	private Person person;
+	private @Valid Person person;
 	private double amount;
 	
 	public Participation(){}

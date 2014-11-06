@@ -20,7 +20,9 @@
     	</head>
     	<body>
     		<tags:navbar_person search_action="${pageContext.request.contextPath}"/>
-
+			<div class="container">
+				<c:if test="${error!=null}"><div class="alert alert-error">${error}</div></c:if>
+			</div>
 			<div class="container" style="margin-left: 50px;margin-top: 100px">
 				
 				<c:forEach items="${users}" var="user">

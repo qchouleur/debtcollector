@@ -24,7 +24,9 @@
     	</head>
 	<body style="padding-top:50px">
 		<tags:navbar search_action="${pageContext.request.contextPath}"/>
-
+		<div class="container">
+			<c:if test="${error!=null}"><div class="alert alert-error">${error}</div></c:if>
+		</div>
 	<div class="container" style="margin-top:50px">
 		<form:form action="${pageContext.request.contextPath}/persons/edit/${idPerson}" class="form-horizontal" commandName="person">
 	    	<fieldset>

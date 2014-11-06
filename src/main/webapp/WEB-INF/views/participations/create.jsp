@@ -25,6 +25,9 @@
 	<body style="padding-top:50px">
 		<tags:navbar search_action="${pageContext.request.contextPath}"/>
 
+		<div class="container">
+			<c:if test="${error!=null}"><div class="alert alert-error">${error}</div></c:if>
+		</div>
 	<div class="container" style="margin-top:50px">
 		<form:form action="${pageContext.request.contextPath}/participations/create/${idPlan}" class="form-horizontal" commandName="participation">
 	    	<fieldset>		
@@ -36,7 +39,7 @@
 	    				<td>
 				    		<form:select name="person" path="person" style="margin-left: 20px; margin-bottom: 15px">
 							  <c:forEach items="${users}" var="user">
-							    <form:option value="${user}">
+							    <form:option value="${user.id}">
 							        ${user.firstName} ${user.lastName} - ${user.email}
 							    </form:option>
 							  </c:forEach>

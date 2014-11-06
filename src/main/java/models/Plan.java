@@ -3,11 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,7 +14,6 @@ public class Plan {
 	@NotEmpty
 	private String title;
 	@NotNull
-	@Past
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date date;
 	private double amount;
@@ -90,5 +85,10 @@ public class Plan {
 	public void addParticipation(Participation participation)
 	{
 		this.participations.add(participation);
+	}
+
+	public boolean isActive() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

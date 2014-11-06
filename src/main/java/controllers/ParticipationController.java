@@ -15,14 +15,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import service.PlanService;
 import data.StaticDataStorage;
 
 @Controller
@@ -37,6 +36,7 @@ public class ParticipationController {
 	public MessageSource messageSource;
 	public StaticDataStorage data = new StaticDataStorage();
 	public List<Plan> plans = data.getPlans();
+	private PlanService service = StaticDataStorage.service();
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -50,18 +50,16 @@ public class ParticipationController {
 		Identifier idPlan = Identifier.fromString(id);
 		
 		ModelAndView modelView = new ModelAndView("participations/create", "participation", new Participation());
-		modelView.addObject("users", data.getUsers());
+		modelView.addObject("users", service.allPersons());
 		modelView.addObject("idPlan", idPlan);
 		return modelView;
 	}
 	
-	@RequestMapping(value = "/create/${idPlan}", method = RequestMethod.POST)
+	@RequestMapping(value = "/create/{idPlan}", method = RequestMethod.POST)
 	public ModelAndView create(
 			@PathVariable(value = "idPlan") String id,
-			@ModelAttribute("participation") 
-			Participation participation,
-			BindingResult result, 
-			ModelMap model,
+			@Valid Participation participation,
+			BindingResult result, ModelMap model,
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
@@ -69,7 +67,7 @@ public class ParticipationController {
 		}
 		
 		Identifier idPlan = Identifier.fromString(id);
-		Plan plan = data.getPlanById(idPlan);
+		Plan plan = service.getById(idPlan);
 		
 		plan.addParticipation(participation);
 		

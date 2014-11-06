@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding;
 import javax.validation.Valid;
 
 import models.Identifier;
@@ -26,8 +27,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import service.PlanService;
 import data.StaticDataStorage;
-
 @Controller
 @RequestMapping(value = {"/", "/index"})
 public class PlanController {
@@ -37,8 +38,7 @@ public class PlanController {
 	
 	@Autowired
 	public MessageSource messageSource;
-	public StaticDataStorage data = new StaticDataStorage();
-	public List<Plan> plans = data.getPlans();
+	private PlanService service = StaticDataStorage.service();
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -50,7 +50,7 @@ public class PlanController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap model) {
 		
-		model.addAttribute("plans", plans);
+		model.addAttribute("plans", service.all());
 		
 		return "index";
 
@@ -72,7 +72,7 @@ public class PlanController {
 		}
 		
 		plan.setId(Identifier.generate());
-		data.addPlan(plan);
+		service.update(plan);
 		
 		return new ModelAndView("redirect:/");
 	}
@@ -82,7 +82,7 @@ public class PlanController {
 			@PathVariable(value = "idPlan") String id) {
 		
 		Identifier idPlan = Identifier.fromString(id);
-		Plan plan = data.getPlanById(idPlan);
+		Plan plan = service.getById(idPlan);
 
 		ModelAndView model = new ModelAndView("plans/edit", "plan", plan);
 		model.addObject("idPlan", idPlan);
@@ -102,12 +102,12 @@ public class PlanController {
 		}
 		
 		Identifier idPlan = Identifier.fromString(id);
-		List<Participation> tmpParticipation = data.getPlanById(idPlan).getParticipations();
-		data.deletePlan(idPlan);
+		List<Participation> tmpParticipation = service.getById(idPlan).getParticipations();
+		service.remove(idPlan);
 		
 		plan.setId(Identifier.generate());
 		plan.setParticipations(tmpParticipation);
-		data.addPlan(plan);
+		service.update(plan);
 		
 		return new ModelAndView("redirect:/");
 	}
@@ -118,12 +118,12 @@ public class PlanController {
 		
 		Identifier idPlan = Identifier.fromString(id); 
 				
-		if(!data.exists(idPlan)) {
-			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.contact.id", null, null));
+		if(!service.exists(idPlan)) {
+			redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.plan.id", null, null));
 			return HOME_REDIRECTION;
 		}
 		
-		data.deletePlan(idPlan);
+		service.remove(idPlan);
 		
 		return new ModelAndView("redirect:/");
 	}
