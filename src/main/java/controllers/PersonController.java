@@ -81,7 +81,7 @@ public class PersonController {
 		ModelAndView model = new ModelAndView("persons/edit", "person", person);
 		model.addObject("idPerson", idPerson);
 		
-		return person != null ?  model : new ModelAndView("redirect:/person/"+idPerson);
+		return person != null ?  model : new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(value = "/edit/{idPerson}", method = RequestMethod.POST)
@@ -116,7 +116,7 @@ public class PersonController {
 		}
 		
 		data.deletePersonById(idPers);
-		//data.deleteParticipationOfPerson(data.getUserById(idPers));
+		data.deleteParticipationOfPerson(data.getUserById(idPers));
 		
 		return new ModelAndView("redirect:/persons/list/");
 	}

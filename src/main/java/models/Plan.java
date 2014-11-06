@@ -5,7 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class Plan {
@@ -13,6 +17,9 @@ public class Plan {
 	private Identifier id;
 	@NotEmpty
 	private String title;
+	@NotNull
+	@Past
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date date;
 	private double amount;
 	private List<Participation> participations = new ArrayList<Participation>();

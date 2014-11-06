@@ -10,7 +10,7 @@
 
     	<div>
 			<form name="remove" class="pull-right" method="post" action="${pageContext.request.contextPath}/persons/delete/${person.id}">
-				<button class="btn btn-default navbar-btn" title="Supprimer" type="submit">
+				<button class="btn btn-default navbar-btn" title="Supprimer" type="submit" onclick="return confirm('Are you sure you want to delete this person?')">
 					<i class="fa fa-close"></i>
 				</button>
 			</form>

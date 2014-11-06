@@ -144,13 +144,34 @@ public class StaticDataStorage {
 	{
 		Participation participationToDelete = null;
 		
-		for(Participation parti : this.participations)
+		for(Plan plan : this.plans)
 		{
-			if(parti.getPerson() == person)
-				participationToDelete = parti;
+			for(Participation participation : plan.getParticipations())
+			{
+				if(participation.getPerson().equals(person))
+					participationToDelete = participation;
+			}
+			
+			if(participationToDelete != null)
+				plan.getParticipations().remove(participationToDelete);
+		}
+	}
+
+	public boolean exists(Identifier idPlan) {
+		return (this.getPlanById(idPlan) != null) ? true : false;
+	}
+
+	public void deletePlan(Identifier idPlan) {
+
+		Plan planToDelete = null;
+		
+		for(Plan plan : this.plans)
+		{
+			if(plan.getId().equals(idPlan))
+				planToDelete = plan;
 		}
 		
-		if(participationToDelete != null)
-			this.participations.remove(participationToDelete);
+		if(planToDelete != null)
+			this.plans.remove(planToDelete);
 	}
 }

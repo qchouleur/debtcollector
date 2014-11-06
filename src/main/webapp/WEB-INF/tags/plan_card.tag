@@ -9,15 +9,15 @@
 	<div class="card-top blue">
 
     	<div>
-			<form name="remove" class="pull-right" method="post" action="${pageContext.request.contextPath}">
-				<button class="btn btn-default navbar-btn" title="Supprimer" type="submit">
+			<form name="remove" class="pull-right" method="post" action="${pageContext.request.contextPath}/plan/delete/${plan.id}">
+				<button class="btn btn-default navbar-btn" title="Supprimer" type="submit" onclick="return confirm('Are you sure you want to delete plan?')">
 					<i class="fa fa-close"></i>
 				</button>
 			</form>
 
 			<button class="btn btn-default navbar-btn pull-right"
 				title="Edition"
-				onclick="window.location ='${pageContext.request.contextPath}'">
+				onclick="window.location ='${pageContext.request.contextPath}/plan/edit/${plan.id}'">
 				<i class="fa fa-cog"></i>
 			</button>
 			<button class="btn btn-default navbar-btn pull-right"
