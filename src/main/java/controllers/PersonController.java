@@ -1,8 +1,9 @@
 package controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
-import models.Identifier;
 import models.Person;
 import models.Plan;
 
@@ -14,10 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,12 +32,10 @@ public class PersonController {
 	@Autowired
 	public MessageSource messageSource;
 	public StaticDataStorage data = new StaticDataStorage();
-	public Plan plan = data.getPlan();
+	public List<Plan> plans = data.getPlans();
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		// Mandatory, otherwise the contact model validation keep 
-		// failing because of string to Id conversion
 		binder.setDisallowedFields("id");
 	}
 	
@@ -51,28 +48,23 @@ public class PersonController {
 
 	}
 	
-	@RequestMapping(value = "/create/${plan.id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(ModelMap model) {
 		
 		return new ModelAndView("persons/create", "person", new Person());
 	}
 	
-	@RequestMapping(value = "/create/${plan.id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView create(
-			@RequestParam(value = "id", required = false) String id,
 			@ModelAttribute("person") @Valid Person person,
 			BindingResult result, ModelMap model,
 			RedirectAttributes redirectAttributes) {
-		
-		Identifier planId = Identifier.fromString(id);
 
 		if (result.hasErrors()) {
 			return new ModelAndView("persons/list");
 		}
 		
 		data.addPerson(person);
-		
-		Plan plan = data.getPlanById(planId);
 		
 		return new ModelAndView("redirect:/persons/list/");
 	}

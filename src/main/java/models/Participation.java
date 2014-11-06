@@ -3,19 +3,19 @@ package models;
 public class Participation {
 	
 	private Person person;
-	private double mount;
+	private double amount;
 	
 	public Participation(){}
 	
-	public Participation(Person person, double mount)
+	public Participation(Person person, double amount)
 	{
 		this.person = person;
-		this.mount = mount;
+		this.amount = amount;
 	}
 
 	@Override
 	public String toString() {
-		return "Participation [person=" + person + ", mount=" + mount + "]";
+		return "Participation [person=" + person + ", amount=" + amount + "]";
 	}
 
 	public Person getPerson() {
@@ -26,11 +26,11 @@ public class Participation {
 		this.person = person;
 	}
 
-	public double getMount() {
-		return mount;
+	public double getAmount() {
+		return amount;
 	}
 
-	public void setMount(double mount) {
-		this.mount = mount;
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 }

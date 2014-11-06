@@ -102,7 +102,7 @@ public class StaticDataStorage {
 	{
 		for(Plan plan : this.plans)
 		{
-			if(plan.getId() == id)
+			if(plan.getId().equals(id))
 				return plan;
 		}
 		

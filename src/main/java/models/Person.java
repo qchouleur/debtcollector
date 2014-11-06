@@ -1,5 +1,7 @@
 package models;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +35,6 @@ public class Person {
 	
 	public Person(String firstName, String lastName, String email)
 	{
-		//this.id = Id.generate();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

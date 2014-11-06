@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import models.Identifier;
+import models.Participation;
 import models.Plan;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +37,6 @@ public class PlanController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		// Mandatory, otherwise the contact model validation keep 
-		// failing because of string to Id conversion
 		binder.setDisallowedFields("id");
 	}
 
@@ -64,7 +64,8 @@ public class PlanController {
 			return new ModelAndView("redirect:/");
 		}
 		
-		plans.add(plan);
+		plan.setId(Identifier.generate());
+		data.addPlan(plan);
 		
 		return new ModelAndView("redirect:/");
 	}

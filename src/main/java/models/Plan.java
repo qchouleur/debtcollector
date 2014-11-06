@@ -79,4 +79,9 @@ public class Plan {
 		
 		return persons;
 	}
+	
+	public void addParticipation(Participation participation)
+	{
+		this.participations.add(participation);
+	}
 }
