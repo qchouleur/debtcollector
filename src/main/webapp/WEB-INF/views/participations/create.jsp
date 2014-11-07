@@ -31,10 +31,10 @@
 	<div class="container" style="margin-top:50px">
 		<form:form action="${pageContext.request.contextPath}/participations/create/${idPlan}" class="form-horizontal" commandName="participation">
 	    	<fieldset>		
-	    		<table style="margin-left: 130px">
+	    		<table style="margin-left: 97px">
 	    			<tr>
 	    				<td>
-	    					<label style="text-align: center;">Alias</label>
+	    					<label style="text-align: center;">Participant</label>
 	    				</td>
 	    				<td>
 				    		<form:select name="person" path="person" style="margin-left: 20px; margin-bottom: 15px">
