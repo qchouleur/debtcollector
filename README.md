@@ -28,15 +28,15 @@ Simple debt manager that enables you to define a plan with person whose particip
 
 ####DESCRIPTION
 
-L'application que nous avons réalisé permet de définir des projets avec le montant déboursé pour celui ci. A cela, on rajoute des participants qui on participé pour le projet avec leur montant. Tout cela pour voir les différentes dépense de chaques personnes.
+L'application que nous avons réalisée permet de définir des projets avec le montant déboursé pour celui ci. A cela, on rajoute des participants qui ont participé pour le projet avec leur montant. Tout cela pour voir les différentes dépenses de chaques personnes.
 
 L'application dispose de trois IHM, un pour les personnes, un pour les participations et l'autre pour les projects.
 
-Nous avons décidés d'utiliser Spring MVC pour vraiment séparer les parties ainsi que pour structurer notre application. Cela permet aussi d'avoir une vision globale sur notre solution. De plus, Spring MVC nous permet de gérer comme nous le souhaitons nos adresses URL.
+Nous avons décidé d'utiliser Spring MVC pour vraiment séparer les parties ainsi que pour structurer notre application. Cela permet aussi d'avoir une vision globale sur notre solution. De plus, Spring MVC nous permet de gérer comme nous le souhaitons nos adresses URL.
 
-Notre choix a été de séparer chaque processus en trois. Les trois processus étant les trois controlleurs c'est à dire un pour chaque service mise à disposition pour l'utilisateur:
+Notre choix a été de séparer chaque processus en trois. Les trois processus étant les trois contrôleurs c'est à dire un pour chaque service mis à disposition pour l'utilisateur:
 
-	- Gestion des project
+	- Gestion des projets
 	- Gestion des utilisateurs
 	- Gestion des participations
 	
@@ -58,7 +58,7 @@ Une partcipation est définie par:
  	- un montant (sa participation)
  	
 
-Nous pouvons donc créer, modifier ou supprimer un projet et un utilisateur. De plus, nous pouvons rajouter des participants pour un projet défini préalablement. Mais pour créer des participations il faut d'abord avoir créés les utilisateurs.
+Nous pouvons donc créer, modifier ou supprimer un projet et un utilisateur. De plus, nous pouvons rajouter des participants pour un projet défini préalablement. Mais pour créer des participations il faut d'abord avoir créé les utilisateurs.
 
 
 ####Utilisation
