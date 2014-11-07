@@ -58,7 +58,7 @@ Une partcipation est définie par:
  	- un montant (sa participation)
  	
 
-Nous pouvons donc créer, modifier ou supprimer un projet et un utilisateur. De plus, nous pouvons rajouter des participants pour un projet défini préalablement. Mais pour créer des participation il faut d'abord avoir créés les utilisateurs.
+Nous pouvons donc créer, modifier ou supprimer un projet et un utilisateur. De plus, nous pouvons rajouter des participants pour un projet défini préalablement. Mais pour créer des participations il faut d'abord avoir créés les utilisateurs.
 
 
 ####Utilisation
