@@ -46,7 +46,7 @@
 							</table>
 						</c:forEach>
 					</c:if>
-					<div style="text-align: center; vertical-align: bottom;">Total: ${plan.amount}</div>
+					<div style="text-align: center; vertical-align: bottom;">Total: ${plan.amount} <i class="fa fa-eur"></i></div>
 			    </td>
 		    </tr>	
 	    </table>
