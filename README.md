@@ -79,6 +79,10 @@ Création d'un utilisateur:
 
 ![Alt text](/src/main/webapp/resources/screenshots/createUser.png?raw=true "Creation utilisateur")
 
+Ajout participation:
+
+![Alt text](/src/main/webapp/resources/screenshots/participation.png?raw=true "Creation participation")
+
 Détail gestion projets:
 
 ![Alt text](/src/main/webapp/resources/screenshots/detail-plans.png?raw=true "Gestion des projets")
