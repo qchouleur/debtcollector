@@ -50,6 +50,11 @@
 			    </td>
 		    </tr>	
 	    </table>
+	    <div style="text-align: right; vertical-align: bottom;">
+	    	<a href="#" title="Details" onclick="window.location ='${pageContext.request.contextPath}/participations/list/${plan.id}'">
+	  			<i class="fa fa-chevron-right fa-2x"></i>
+			</a>
+		</div>
    	</div>
  </div>
  

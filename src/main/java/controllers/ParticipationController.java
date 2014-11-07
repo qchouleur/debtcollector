@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -76,6 +77,37 @@ public class ParticipationController {
 		plan.addParticipation(participation);
 		
 		return new ModelAndView("redirect:/");
+	}
+	
+	@RequestMapping(value = "/list/{idPlan}", method = RequestMethod.GET)
+	public ModelAndView list(ModelMap model,
+			@PathVariable(value = "idPlan") String id) {
+		
+		Identifier idPlan = Identifier.fromString(id);
+		Plan plan = service.getById(idPlan);
+		
+		ArrayList<String> detail = detailCalcul(plan.getParticipations(), plan.getAmount());
+		
+		ModelAndView modelView = new ModelAndView("participations/list");
+		modelView.addObject("participations", detail);
+		return modelView;
+	}
+
+	private ArrayList<String> detailCalcul(List<Participation> participations, double amount) {
+		
+		ArrayList<String> detail = new ArrayList<String>();
+		
+		for(Participation participation : participations)
+		{
+			if(participation.getAmount() < amount/participations.size())
+			{
+				detail.add(participation.getPerson().getFirstName() + " " +
+						participation.getPerson().getLastName() + " " + " doit " +
+						(amount/participations.size()-participation.getAmount()) + " euros");
+			}
+		}
+		
+		return detail;
 	}
 	
 }
