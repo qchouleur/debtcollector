@@ -53,6 +53,7 @@ Un utilisateur est défini par:
 	- un email
 	
 Une partcipation est définie par:
+
  	- un utilisateur
  	- un montant (sa participation)
  	
@@ -77,6 +78,14 @@ Les utilisateurs:
 Création d'un utilisateur:
 
 ![Alt text](/src/main/webapp/resources/screenshots/createUser.png?raw=true "Creation utilisateur")
+
+Détail gestion projets:
+
+![Alt text](/src/main/webapp/resources/screenshots/detail-plans.png?raw=true "Gestion des projets")
+
+Détail gestion utilisateur: 
+
+![Alt text](/src/main/webapp/resources/screenshots/detail-users.png?raw=true "Gestion des utilisateurs")
 
 
 ###Spring MVC
