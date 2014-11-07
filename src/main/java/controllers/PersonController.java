@@ -61,7 +61,7 @@ public class PersonController {
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return new ModelAndView("persons/list");
+			return new ModelAndView("redirect:/persons/list");
 		}
 		
 		for(Person per : service.allPersons())
@@ -69,7 +69,7 @@ public class PersonController {
 			if(per.getEmail().equals(person.getEmail()))
 			{
 				redirectAttributes.addFlashAttribute("error",messageSource.getMessage("Invalid.person.email", null, null));
-				return new ModelAndView("persons/list");
+				return new ModelAndView("redirect:/persons/list");
 			}
 		}
 		

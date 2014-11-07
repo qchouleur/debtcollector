@@ -1,24 +1,87 @@
-App Engine Java Guestbook
-Copyright (C) 2010-2012 Google Inc.
+debtcollector - simple debt manager
+============================================================================================================================================
 
-## Sample guestbook for use with App Engine Java.
+####ABRSTRACT
 
-Requires [Apache Maven](http://maven.apache.org) 3.1 or greater, and JDK 7+ in order to run.
+Simple debt manager that enables you to define a plan with person whose participate.
 
-To build, run
+####AUTHORS
 
-    mvn package
+*Nerojan Rajaratnam*
 
-Building will run the tests, but to explicitly run tests you can use the test target
+<rajaratnam@et.esiea.fr>
 
-    mvn test
+*Quentin Chouleur* 
 
-To start the app, use the [App Engine Maven Plugin](http://code.google.com/p/appengine-maven-plugin/) that is already included in this demo.  Just run the command.
+<chouleur@et.esiea.fr>
 
-    mvn appengine:devserver
 
-For further information, consult the [Java App Engine](https://developers.google.com/appengine/docs/java/overview) documentation.
 
-To see all the available goals for the App Engine plugin, run
+####CREDITS
 
-    mvn help:describe -Dplugin=appengine
+- [font awesome](http://fontawesome.io) - Set of scalable vector icons created by Dave Gandy. licensed under the *SIL OFL 1.1*.
+
+- [Bootstrap](http://getbootstrap.com) - HTML, CSS & JS framwork. *MIT License*.
+
+- [Bootplus](http://aozora.github.io/bootplus/) - Enhanced bootstrap with a google-ish style. *Apache License v2.0*.
+
+
+####DESCRIPTION
+
+L'application que nous avons réalisé permet de définir des projets avec le montant déboursé pour celui ci. A cela, on rajoute des participants qui on participé pour le projet avec leur montant. Tout cela pour voir les différentes dépense de chaques personnes.
+
+L'application dispose de trois IHM, un pour les personnes, un pour les participations et l'autre pour les projects.
+
+Nous avons décidés d'utiliser Spring MVC pour vraiment séparer les parties ainsi que pour structurer notre application. Cela permet aussi d'avoir une vision globale sur notre solution. De plus, Spring MVC nous permet de gérer comme nous le souhaitons nos adresses URL.
+
+Notre choix a été de séparer chaque processus en trois. Les trois processus étant les trois controlleurs c'est à dire un pour chaque service mise à disposition pour l'utilisateur:
+	- Gestion de projects
+	- Gestion des utilisateurs
+	- Gestion des participations
+	
+Un projet est défini par:
+	- un titre
+	- une date
+ 	- un montant total (dépense)
+ 
+Un utilisateur est défini par:
+	- un nom
+	- un prénom
+	- un email
+	
+Une partcipation est définie par:
+ 	- un utilisateur
+ 	- un montant (sa participation)
+ 	
+
+Nous pouvons donc créer, modifier ou supprimer un projet et un utilisateur. De plus, nous pouvons rajouter des participants pour un projet défini préalablement. Mais pour créer des participation il faut d'abord avoir créés les utilisateurs.
+
+
+####Utilisation
+
+![Alt text](/src/main/webapp/resources/screenshots/plans.png?raw=true "Projets")
+
+![Alt text](/src/main/webapp/resources/screenshots/createPlan.png?raw=true "Creation projet")
+
+![Alt text](/src/main/webapp/resources/screenshots/users.png?raw=true "Utilisateurs")
+
+![Alt text](/src/main/webapp/resources/screenshots/createUser.png?raw=true "Creation utilisateur")
+
+
+###Spring MVC
+
+« SPRING est effectivement un conteneur dit “ léger ”, c’est-à-dire une infrastructure similaire à un serveur d'applications J2EE. Il prend donc en charge la création d’objets et la mise en relation d’objets par l’intermédiaire d’un fichier de configuration qui décrit les objets à fabriquer et les relations de dépendances entre ces objets. Le gros avantage par rapport aux serveurs d’application est qu’avec SPRING, les classes n’ont pas besoin d’implémenter une quelconque interface pour être prises en charge par le framework (au contraire des serveur d'applications J2EE et des EJBs). C’est en ce sens que SPRING est qualifié de conteneur “ léger ”. »
+
+Spring s’appuie principalement sur l’intégration de trois concepts clés :
+
+l’inversion de contrôle est assurée de deux façons différentes : la recherche de dépendances et l'injection de dépendances
+la programmation orientée aspect
+une couche d’abstraction.
+La couche d’abstraction permet d’intégrer d’autres frameworks et bibliothèques avec une plus grande facilité. Cela se fait par l’apport ou non de couches d’abstraction spécifiques à des frameworks particuliers. Il est ainsi possible d’intégrer un module d’envoi de mails plus facilement.
+
+Source: Wikipedia
+
+
+
+
+
