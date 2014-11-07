@@ -35,7 +35,7 @@ L'application dispose de trois IHM, un pour les personnes, un pour les participa
 Nous avons décidés d'utiliser Spring MVC pour vraiment séparer les parties ainsi que pour structurer notre application. Cela permet aussi d'avoir une vision globale sur notre solution. De plus, Spring MVC nous permet de gérer comme nous le souhaitons nos adresses URL.
 
 Notre choix a été de séparer chaque processus en trois. Les trois processus étant les trois controlleurs c'est à dire un pour chaque service mise à disposition pour l'utilisateur:
-	- Gestion de projects
+	- Gestion de projects </br>
 	- Gestion des utilisateurs
 	- Gestion des participations
 	
@@ -59,11 +59,19 @@ Nous pouvons donc créer, modifier ou supprimer un projet et un utilisateur. De 
 
 ####Utilisation
 
+Les projets:
+
 ![Alt text](/src/main/webapp/resources/screenshots/plans.png?raw=true "Projets")
+
+Création d'un projet:
 
 ![Alt text](/src/main/webapp/resources/screenshots/createPlan.png?raw=true "Creation projet")
 
+Les utilisateurs:
+
 ![Alt text](/src/main/webapp/resources/screenshots/users.png?raw=true "Utilisateurs")
+
+Création d'un utilisateur:
 
 ![Alt text](/src/main/webapp/resources/screenshots/createUser.png?raw=true "Creation utilisateur")
 
