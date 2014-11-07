@@ -1,5 +1,6 @@
 package controllers;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,11 +104,16 @@ public class ParticipationController {
 			{
 				detail.add(participation.getPerson().getFirstName() + " " +
 						participation.getPerson().getLastName() + " " + " doit " +
-						(amount/participations.size()-participation.getAmount()) + " euros");
+						RoundTo2Decimals((amount/participations.size()-participation.getAmount())) + " euros");
 			}
 		}
 		
 		return detail;
 	}
+	
+	double RoundTo2Decimals(double val) {
+        DecimalFormat df2 = new DecimalFormat("#.00");
+    return Double.valueOf(df2.format(val));
+}
 	
 }
