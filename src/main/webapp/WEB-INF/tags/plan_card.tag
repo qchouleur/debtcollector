@@ -51,9 +51,11 @@
 		    </tr>	
 	    </table>
 	    <div style="text-align: right; vertical-align: bottom;">
+	    <c:if test="${not empty plan.getParticipations()}">
 	    	<a href="#" title="Details" onclick="window.location ='${pageContext.request.contextPath}/participations/list/${plan.id}'">
 	  			<i class="fa fa-chevron-right fa-2x"></i>
 			</a>
+		</c:if>
 		</div>
    	</div>
  </div>
